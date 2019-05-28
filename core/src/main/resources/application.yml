@@ -1,0 +1,87 @@
+server:
+#  本地
+  port: 8456
+#  生产
+#  port: 8800
+#public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIkn6OjcWOl5kOfdqnMJD76qHVYiXSsaB8w6vvjUlsCTXu+YyRl8dCIIj308cH/2mCJxchysi3rPnoECGvnuuFcCAwEAAQ==
+
+#准生产
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKPJHU/izzXNSRs5wPthc8TUtd03DpEKqemuLHPZiq4mAW6OTmApA8sZO9+opHGJzpxkx7+rp1zIgHYt9Q/04SsCAwEAAQ==
+
+spring:
+  application:
+    name: word2pdf-core
+  datasource:
+    druid:
+#      生产
+#      url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.7.76.141)(PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=10.7.76.142)(PORT=1521))(FAILOVER=on)(LOAD_BALANCE=on))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xptdb)))
+#      username: portal
+#      password: S1zIsPJ4Bo/HEvx2mmQkTX9YUOcszx+qE0GPqkRfVeV9vZtANZnT6euLHDOf3gVP42F9tXoZU/+tzZHZl9M16A==
+
+#      uat2
+#      url: jdbc:oracle:thin:@10.7.101.45:1521:pydb2
+#      username: portal
+#      password: cV1E6JOoYLP9P5f8a8GEnu0oCEMOFL182NGzBqOh3YVKUP3zU6tB2DJhfrbHpFtllMMPocCEFNN/bviz7O8KTg==
+
+#      uat5
+      url: jdbc:oracle:thin:@10.7.101.48:1521:pydb0
+      username: portal
+      password: LFXjJRmOKaXeSYxluZS/dKp2rew+22UrBaPg6nq+ZG5woVPHI2KuKVQV2AUfBhYvUHevqg6H7lVG/90flIJLYQ==
+      #连接池配置
+      #配置初始化大小、最小、最大、等待超时的时间
+      initial-size: 5
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 600000
+      # 连接有效性验证
+      validation-query: select 1 from dual
+      # 针对oracle数据库，缓存pscache,并设置连接数
+      max-pool-prepared-statement-per-connection-size: 100
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      filter:
+        config:
+          enabled: true
+        stat:
+          enabled: true
+        slf4j:
+          enabled: true
+      connection-properties: config.decrypt=true;config.decrypt.key=${public-key}
+      # 监控配置
+      web-stat-filter:
+        enabled: true
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      # 数据库监控,默认上下文位置为/druid
+      stat-view-servlet:
+        enabled: true
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: ALWAYS
+
+mybatis:
+  mapper-locations: classpath:mapper/*.sqlmap.xml
+pagehelper:
+  autoRuntimeDialect: true
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+path:
+#  生产
+#  nas: N:/
+#  wordToPdfLocalPath-xin: E:/signature-remote-pdf/WordforPDF/
+
+#  本地
+  nas: "D:/NAS"
+  wordToPdfLocalPath-xin: D:/xpt/word2pdf/
+cxf:
+  path: /isignweb/services

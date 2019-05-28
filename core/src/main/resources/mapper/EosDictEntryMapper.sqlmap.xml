@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.fotic.it.support.word2pdf.dao.mapper.EosDictEntryMapper">
+<select id="getDictName" resultType="java.lang.String" parameterType="Map">
+    SELECT
+        DICTNAME
+    FROM
+        EOS_DICT_ENTRY
+    <where>
+        <if test="typeId != null and typeId != ''">
+            AND DICTTYPEID = #{typeId}
+        </if>
+        <if test="id != null and id != ''">
+            AND DICTID = #{id}
+        </if>
+    </where>
+</select>
+
+    <select id="getSignConfigurationInfoEntity" resultMap="BaseResultMap">
+        select e.DICTTYPEID DICT_TYPE_ID,
+            max(case when e.DICTID = 'ftp_address' then e.DICTNAME  end) FTP_ADDRESS ,
+            max(case when e.DICTID = 'ftp_port' then e.DICTNAME else null end) FTP_PORT ,
+            max(case when e.DICTID = 'ftp_user' then e.DICTNAME else null end) FTP_USER ,
+            max(case when e.DICTID = 'ftp_pwd' then e.DICTNAME else null end) FTP_PWD ,
+            max(case when e.DICTID = 'wordpdf_url_rt' then e.DICTNAME else null end) WORD_PDF_URL_RT,
+            max(case when e.DICTID = 'wordpdf_url_xin' then e.DICTNAME else null end) WORD_PDF_URL_XIN
+        from eos_dict_entry e
+        where e.DICTTYPEID='signature_ftp_info_wordpdf' and e.DICTID in ('ftp_address','ftp_port','ftp_user','ftp_pwd','wordpdf_url_rt','wordpdf_url_xin')
+        group by e.DICTTYPEID
+    </select>
+    <resultMap id="BaseResultMap" type="com.fotic.it.support.word2pdf.dao.entity.SignConfigurationInfoEntity" >
+        <id column="DICT_TYPE_ID" property="dicTypeId" jdbcType="VARCHAR" />
+        <result column="FTP_ADDRESS" property="ftpAddress" jdbcType="VARCHAR" />
+        <result column="FTP_PORT" property="ftpPort" jdbcType="VARCHAR" />
+        <result column="FTP_USER" property="ftpUser" jdbcType="VARCHAR" />
+        <result column="FTP_PWD" property="ftpPwd" jdbcType="VARCHAR" />
+        <result column="WORD_PDF_URL_RT" property="wordPdUrlRt" jdbcType="VARCHAR" />
+        <result column="WORD_PDF_URL_XIN" property="wordPdUrlXpt" jdbcType="VARCHAR" />
+    </resultMap>
+</mapper>

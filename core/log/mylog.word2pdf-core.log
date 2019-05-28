@@ -1,0 +1,28 @@
+2019-05-24 08:29:47 [main] [INFO] [org.springframework.boot.StartupInfoLogger:50] - Starting TestServiceTest on USER-20170918NT with PID 11764 (started by Administrator in D:\idea-work\git\word2pdf\core) 
+2019-05-24 08:29:47 [main] [DEBUG] [org.springframework.boot.StartupInfoLogger:53] - Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE 
+2019-05-24 08:29:47 [main] [INFO] [org.springframework.boot.SpringApplication:675] - No active profile set, falling back to default profiles: default 
+2019-05-24 08:29:58 [main] [INFO] [org.springframework.boot.StartupInfoLogger:59] - Started TestServiceTest in 11.049 seconds (JVM running for 12.68) 
+2019-05-24 08:29:58 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==>  Preparing: SELECT count(*) from test  
+2019-05-24 08:29:58 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==> Parameters:  
+2019-05-24 08:29:58 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - <==      Total: 1 
+2019-05-24 09:14:41 [main] [INFO] [org.springframework.boot.StartupInfoLogger:50] - Starting TestServiceTest on USER-20170918NT with PID 16896 (started by Administrator in D:\idea-work\git\word2pdf\core) 
+2019-05-24 09:14:41 [main] [DEBUG] [org.springframework.boot.StartupInfoLogger:53] - Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE 
+2019-05-24 09:14:41 [main] [INFO] [org.springframework.boot.SpringApplication:675] - No active profile set, falling back to default profiles: default 
+2019-05-24 09:14:51 [main] [INFO] [org.springframework.boot.StartupInfoLogger:59] - Started TestServiceTest in 10.517 seconds (JVM running for 12.106) 
+2019-05-24 09:14:51 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==>  Preparing: SELECT count(*) from test  
+2019-05-24 09:14:51 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==> Parameters:  
+2019-05-24 09:14:51 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - <==      Total: 1 
+2019-05-24 09:44:05 [main] [INFO] [org.springframework.boot.StartupInfoLogger:50] - Starting TestServiceTest on USER-20170918NT with PID 16652 (started by Administrator in D:\idea-work\git\word2pdf\core) 
+2019-05-24 09:44:05 [main] [DEBUG] [org.springframework.boot.StartupInfoLogger:53] - Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE 
+2019-05-24 09:44:05 [main] [INFO] [org.springframework.boot.SpringApplication:675] - No active profile set, falling back to default profiles: default 
+2019-05-24 09:44:15 [main] [INFO] [org.springframework.boot.StartupInfoLogger:59] - Started TestServiceTest in 11.099 seconds (JVM running for 12.722) 
+2019-05-24 09:44:15 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==>  Preparing: SELECT count(*) from test  
+2019-05-24 09:44:16 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==> Parameters:  
+2019-05-24 09:44:16 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - <==      Total: 1 
+2019-05-24 12:45:11 [main] [INFO] [org.springframework.boot.StartupInfoLogger:50] - Starting TestServiceTest on USER-20170918NT with PID 21268 (started by Administrator in D:\idea-work\git\word2pdf\core) 
+2019-05-24 12:45:11 [main] [DEBUG] [org.springframework.boot.StartupInfoLogger:53] - Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE 
+2019-05-24 12:45:11 [main] [INFO] [org.springframework.boot.SpringApplication:675] - No active profile set, falling back to default profiles: default 
+2019-05-24 12:45:22 [main] [INFO] [org.springframework.boot.StartupInfoLogger:59] - Started TestServiceTest in 11.6 seconds (JVM running for 13.164) 
+2019-05-24 12:45:22 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==>  Preparing: SELECT count(*) from test  
+2019-05-24 12:45:22 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - ==> Parameters:  
+2019-05-24 12:45:22 [main] [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger:159] - <==      Total: 1 

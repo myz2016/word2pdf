@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fotic.it.support.word2pdf.dao.mapper.Word2pdfInfoLogMapper">
+    <!-- 查询所有部分匹配条件 -->
+    <select id="findAll"  resultMap="BaseResultMap"  parameterType="com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog">
+        SELECT
+        id,code,filename,INPUT_PATH,OUTPUT_PATH,info,createtime,to_char(createtime,'yyyy-mm-dd hh24:mi:ss') createTimeStr,modifytime,to_char(modifytime,'yyyy-mm-dd hh24:mi:ss') modifytimeStr FROM word2pdf_info_log
+        <where>
+            <if test="filename != null and filename != ''">
+                and FILENAME like '%${filename}%'
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+        </where>
+        order by createtime desc
+    </select>
+
+
+    <resultMap id="BaseResultMap" type="com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="CODE" property="code" jdbcType="DECIMAL" />
+        <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+        <result column="INPUT_PATH" property="inputPath" jdbcType="VARCHAR" />
+        <result column="OUTPUT_PATH" property="outputPath" jdbcType="VARCHAR" />
+        <result column="INFO" property="info" jdbcType="VARCHAR" />
+        <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="CREATETIMESTR" property="createTimeStr" jdbcType="VARCHAR" />
+        <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP" />
+        <result column="MODIFYTIMESTR" property="modifytimeStr" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog">
+        insert into PORTAL.WORD2PDF_INFO_LOG(id, CODE, FILENAME, INPUT_PATH, OUTPUT_PATH, INFO, CREATETIME, MODIFYTIME)
+        values (#{id}, #{code}, #{filename}, #{inputPath}, #{outputPath}, #{info}, #{createtime}, #{modifytime})
+    </insert>
+
+<!--    &lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+<!--    <update id="update">-->
+<!--        update PORTAL.WORD2PDF_INFO_LOG-->
+<!--        <set>-->
+<!--            <if test="code != null">-->
+<!--                CODE = #{code},-->
+<!--            </if>-->
+<!--            <if test="filename != null and filename != ''">-->
+<!--                FILENAME = #{filename},-->
+<!--            </if>-->
+<!--            <if test="inputPath != null and inputPath != ''">-->
+<!--                INPUT_PATH = #{inputPath},-->
+<!--            </if>-->
+<!--            <if test="outputPath != null and outputPath != ''">-->
+<!--                OUTPUT_PATH = #{outputPath},-->
+<!--            </if>-->
+<!--            <if test="info != null and info != ''">-->
+<!--                INFO = #{info},-->
+<!--            </if>-->
+<!--            <if test="createtime != null">-->
+<!--                CREATETIME = #{createtime},-->
+<!--            </if>-->
+<!--            <if test="modifytime != null">-->
+<!--                MODIFYTIME = #{modifytime},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where ID = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;通过主键删除&ndash;&gt;-->
+<!--    <delete id="deleteById">-->
+<!--        delete from PORTAL.WORD2PDF_INFO_LOG where ID = #{id}-->
+<!--    </delete>-->
+
+</mapper>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Word转pdf日志监控平台</title>
+    <!-- 使用js原生方式引入 -->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="icon" type="image/ico" href="./favicon.ico">
+</head>
+<body>
+<!--下面是顶部导航栏的代码-->
+<nav id="topbar" class="navbar navbar-default navbar-fixed-top" role="navigation"><!--navbar-inverse:取反色-->
+    <div ><!--.container-fluid类宽度不管屏幕宽度大小，一直是100%-->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">word2pdf前端管理界面 </a>
+        </div>
+        <div class="topbar-main">
+            <a id="menu-toggle" href="#" class="hidden-xs">菜单折叠</a>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div id="wrapper">
+        <!—左侧导航栏-->
+        <nav id="sidebar" class="navbar-default navbar-static-side" role="navigation">
+            <div class="col-md-1">
+                <!--<ul class="nav nav-sidebar">
+                    <li><a href="#" rel="external nofollow">首页</a></li>
+                </ul>-->
+                <ul class="nav nav-sidebar" role="tablist">
+                    <li role="presentation">
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"
+                           onClick="load_home('home','table2.html');">日志查询</a></li>
+                    <!--<li role="presentation" class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab"
+                           onClick="load_home('home','table1.html');">模板页面</a></li>-->
+                </ul>
+                <!--<ul class="nav nav-sidebar">
+                    <li><a href="#">设置</a></li>
+                    <li><a href="#">帮助</a></li>
+                </ul>-->
+            </div>
+        </nav>
+    </div>
+        <!—右侧管理控制台-->
+    <div class="col-md-11">
+        <div id="page-wrapper">
+            <!—自适应布局-->
+            <div class="container-fluid">
+                <div class="page-content tab-content">
+                    <div class="row mbl">
+                        <div class="col-lg-12 col-lg-12-body">
+                            <div role="tabpanel" class="tab-pane active col-lg-12" id="home">试着点下左侧菜单看看</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    /*Vue 双向绑定*/
+    // var myVueTest = new Vue({
+    //     el: '#menu',
+    //     data: {
+    //         items: [
+    //             '静态数据Vue1',
+    //             '静态数据Vue2',
+    //             '静态数据Vue3'
+    //         ]
+    //     }
+    // });
+</script>
+<script>
+    $('#home').load('/page/table2.html');
+    function load_home(a_id, b_html) {
+        // console.log("1:index2页面="+a_id+ "-" + b_html);
+        $('#home').load('/page/' + b_html, function (responseText, textStatus, XMLHttpRequest) {
+            // console.log("2:index2页面b_html="+b_html);         //请求返回的内容
+        });
+    }
+</script>
+</html>

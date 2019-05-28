@@ -1,0 +1,22 @@
+server:
+  port: 8001
+
+spring:
+  mvc:
+    view:
+      prefix: /page/
+      suffix: .html
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
+coreUrl:
+#  生产
+#  baseUrl: http://10.7.56.22:8800/
+  #  uat5
+  baseUrl: http://10.7.101.119:9520/
+  #  uat2
+  #  baseUrl: http://10.7.101.119:9082/
+  #  local
+  #  baseUrl: http://172.16.112.154:8456/
+  coreIndexUrl: coreIndex

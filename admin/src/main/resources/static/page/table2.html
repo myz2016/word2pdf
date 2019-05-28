@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/style/style-table2.js"></script>
+    <script src="../js/function/commonUtil.js"></script>
+    <title>table2</title>
+    <style type="text/css">
+                footer{background:#d4d0c8;}
+                footer{border: 1px solid transparent !important;}
+    </style>
+
+</head>
+<body>
+<!--<div id="menu">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>编号1318</th>
+                        <th>Code</th>
+                        <th>文件名</th>
+                        <th>输入路径</th>
+                        <th>输出路径</th>
+                        <th>信息</th>
+                        <th>创建时间</th>
+                       <th>修改时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <todo-item v-for="item in items" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+                </tr>
+                </tbody>
+            </table>
+</div>-->
+<div class="form-inline" role="form">
+    <div class="form-group">
+        <label>文件名:</label> <input placeholder="文件名"
+                                    class="form-control layer-date" id="filename" name="filename">
+    </div>
+    <div class="form-group">
+        <label>状态码:</label> <input placeholder="状态码"
+                                   class="form-control layer-date" id="code" name="code">
+    </div>
+<!--    <div class="form-group">
+        <label>创建时间(开始):</label> <input data-type="Date" placeholder="创建时间"
+                                        class="form-control layer-date" id="createTimeStart" name="createTime">
+    </div>
+    <div class="form-group">
+        <label>创建时间(结束):</label> <input placeholder="创建时间"
+                                        class="form-control layer-date" id="createTimeEnd" name="createTime">
+    </div>-->
+        <button type="button" id="queryBtn" class="btn btn-primary">查询</button>
+        <button type="button" id="resetBtn" class="btn btn-primary">重置</button>
+</div>
+<table id="mytable2"
+       data-toolbar="#toolbar"
+       data-toggle="table"
+       data-height="630"
+       data-search-on-enter-key="true"
+       data-show-footer="true"
+       data-footer-style="footerStyle">
+</table>
+</body>
+<script>
+    $(function(){
+        $("#queryBtn").click(function() {
+            $('#mytable2').bootstrapTable('refresh');
+        });
+
+        $("#resetBtn").click(function() {
+            $("#filename").val("");
+            $("#code").val("");
+            $('#mytable2').bootstrapTable('refresh');
+        })
+    })
+
+    $('#mytable2').bootstrapTable({
+        url:'http://10.7.56.22:8001/table2',
+        method: "get",
+        dataType : 'JSON',
+        sidePagination: "server", //分页方式：client客户端分页，server服务端分页
+        pagination: true,          //是否显示分页
+        // search:true,
+        striped: true,      //是否显示行间隔色
+        // showColumns: true, // 开启自定义列显示功能
+        // showRefresh: true,         //是否显示刷新按钮
+        sortOrder: "asc",     //排序方式
+        pageNumber:1,      //初始化加载第一页，默认第一页
+        pageSize: 20,
+        pageList: [5,10,20,50,100],//可供选择的每页的行数
+        queryParamsType:'', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                            //设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+        //得到查询的参数
+        queryParams : function queryParams(params) {
+            var param = {
+                pageSize : params.pageSize,
+                pageNumber : params.pageNumber,
+                filename : $("#filename").val(),
+                code : $("#code").val()
+                /*,
+                createTimeStart : $("#createTimeStart").val(),
+                createTimeStartEnd :$("#createTimeStartEnd").val()*/
+            };
+            return param;
+        },
+        columns:[{
+            checkbox: true,
+            visible:true            //是否显示复选框
+        },{
+            field: 'id',
+            title: '编号',
+            sortable:true,
+            hidden : true
+        },{
+            field: 'code',
+            title: '状态码',
+            sortable:true
+            // ,
+            // footerFormatter:function (data) {
+            //     return "";
+            // }
+        },{
+            field: 'info',
+            title: '信息',
+            sortable:true
+        },{
+            field: 'filename',
+            title: '文件名',
+            sortable:true
+        },{
+            field: 'createTimeStr',
+            title: '创建时间',
+            sortable:true
+            // ,
+            // formatter : function(value) {
+            //     return dateFormatter(value)
+            // }
+        },{
+            field: 'inputPath',
+            title: '输入路径',
+            sortable:true
+        },{
+            field: 'outputPath',
+            title: '输出路径',
+            sortable:true
+        },{
+            field: 'modifytimeStr',
+            title: '修改时间',
+            sortable:true
+            // ,
+            // formatter : function(value) {
+            //     return dateFormatter(value)
+            // }
+        }],
+        onPostBody:function (a) {
+            //合并页脚
+            footerStyle(a);
+        }
+    });
+    //隐藏主键id列
+    $('#mytable2').bootstrapTable('hideColumn', 'id');
+
+    function footerStyle(column) {
+        return {
+            code: {
+                css: {width: '8000px'}
+            }
+        }[column.field]
+    }
+
+    //合并页脚
+    function merge_footer() {debugger;
+        var footer_tbody = $('.fixed-table-footer table tbody');
+        var footer_tr = footer_tbody.find('>tr');
+        var footer_td = footer_tr.find('>td');
+        var footer_td_1 = footer_td.eq(0);
+        //第一列为:'平均分',第二列为平局分内容
+        for(var i=2;i<footer_td.length;i++) {
+            footer_td.eq(i).hide();
+        }
+        footer_td_1.attr('colspan', 3).show();
+    }
+
+
+
+    /*Vue.component('todo-item', {
+        props: ['todo'],
+        template:
+            '<table class="table table-hover-color table-striped">'+
+                '<thead>'+
+                    '<tr>'+
+                        '<th>编号1820</th>'+
+                        '<th>Code</th>'+
+                        '<th>文件名</th>'+
+                        '<th>输入路径</th>'+
+                        '<th>输出路径</th>'+
+                        '<th>信息</th>'+
+                        '<th>创建时间</th>'+
+                        '<th>修改时间</th>'+
+                    '</tr>'+
+                '</thead>'+
+            '<tbody>'+
+                '<tr>'+
+                    '<td>{{todo.id}}</td>'+
+                    '<td>{{todo.code}}</td>'+
+                    '<td>{{todo.filename}}</td>'+
+                    '<td>{{todo.inputPath}}</td>'+
+                    '<td>{{todo.outputPath}}</td>'+
+                    '<td>{{todo.info}}</td>'+
+                    '<td>{{todo.createtime}}</td>'+
+                    '<td>{{todo.modifytime}}</td>'+
+                '</tr>'+
+            '</tbody>'+
+            '</table>'
+    });
+
+    var myVueTest = new Vue({
+        el: '#menu',
+        data:{
+            items:[]
+        },
+        created : function () {
+            var self = this;
+            $.ajax({
+                url: 'http://localhost:8001/table2',
+                type: 'get',
+                data: {},
+                dataType: 'json'
+            }).then(function (value) {
+                self.$data.items = value;
+                console.log(value);
+            }).fail(function () {
+                console.log('table2数据请求失败');
+            })
+        }
+    });*/
+</script>
+</html>
