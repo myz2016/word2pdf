@@ -1,10 +1,7 @@
 package com.fotic.it.support.word2pdf.dao.mapper;
 
 import com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog;
-import com.github.pagehelper.Page;
-import oracle.sql.DATE;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

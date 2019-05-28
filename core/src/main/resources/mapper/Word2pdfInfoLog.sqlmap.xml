@@ -25,16 +25,16 @@
         <result column="INPUT_PATH" property="inputPath" jdbcType="VARCHAR" />
         <result column="OUTPUT_PATH" property="outputPath" jdbcType="VARCHAR" />
         <result column="INFO" property="info" jdbcType="VARCHAR" />
-        <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="CREATE_TIME" property="createtime" jdbcType="TIMESTAMP" />
         <result column="CREATETIMESTR" property="createTimeStr" jdbcType="VARCHAR" />
-        <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP" />
+        <result column="MODIFY_TIME" property="modifytime" jdbcType="TIMESTAMP" />
         <result column="MODIFYTIMESTR" property="modifytimeStr" jdbcType="VARCHAR" />
     </resultMap>
 
 
     <!--新增所有列-->
     <insert id="insert" parameterType="com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog">
-        insert into PORTAL.WORD2PDF_INFO_LOG(id, CODE, FILENAME, INPUT_PATH, OUTPUT_PATH, INFO, CREATETIME, MODIFYTIME)
+        insert into word_2_pdf_info_log (id, CODE, FILENAME, INPUT_PATH, OUTPUT_PATH, INFO, CREATE_TIME, MODIFY_TIME)
         values (#{id}, #{code}, #{filename}, #{inputPath}, #{outputPath}, #{info}, #{createtime}, #{modifytime})
     </insert>
 

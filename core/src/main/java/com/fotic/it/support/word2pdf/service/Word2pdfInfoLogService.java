@@ -2,7 +2,6 @@ package com.fotic.it.support.word2pdf.service;
 
 import com.fotic.it.support.word2pdf.dao.entity.Word2pdfInfoLog;
 import com.github.pagehelper.PageInfo;
-import oracle.sql.DATE;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
