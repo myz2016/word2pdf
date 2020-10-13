@@ -29,7 +29,7 @@
         <apache.commons.lang3>3.7</apache.commons.lang3>
         <apache.commons.text>1.6</apache.commons.text>
         <apache.commons.httpcomponents>4.5.6</apache.commons.httpcomponents>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jacob.version>1.14.3</jacob.version>
         <alibaba.druid.version>1.1.10</alibaba.druid.version>
         <oracle11.ojdbc6.version>11.2.0.4</oracle11.ojdbc6.version>
